@@ -1,0 +1,653 @@
+/*====  RESET ============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/*====  VARIABLES ============================ */
+:root {
+  --header-height: 4.5rem;
+
+  /* colors */
+  --hue: 159;
+  /* HSL color mode */
+  --base-color: hsl(var(--hue) 100% 40%);
+  --base-color-second: hsl(var(--hue) 65% 88%);
+  --base-color-alt: hsl(var(--hue) 100% 53%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
+  --text-color-light: hsl(0 0% 98%);
+  --body-color: hsl(0 0% 98%);
+}
+
+/*===  BASE ============================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font: 400 1rem 'DM Sans', sans-serif;
+  color: var(--text-color);
+  background: var(--body-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+.title {
+  font: 700 1.875rem 'Poppins', sans-serif;
+  color: var(--title-color);
+  -webkit-font-smoothing: auto;
+}
+
+.button {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  font: 500 1rem 'DM Sans', sans-serif;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: var(--base-color-alt);
+}
+
+.divider-1 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1),
+    hsla(var(--hue), 65%, 88%, 0.34)
+  );
+}
+
+.divider-2 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 65%, 88%, 0.34),
+    hsla(var(--hue), 36%, 57%, 1)
+  );
+}
+
+/*====  LAYOUT ============================ */
+
+.section header {
+  margin-bottom: 4rem;
+}
+
+.container {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section .title {
+  margin-bottom: 1rem;
+}
+
+.section header {
+  margin-bottom: 4rem;
+}
+
+#header {
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 2rem;
+  display: flex;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--body-color);
+  width: 100%;
+}
+
+#header.scroll {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+main {
+  margin-top: calc(var(--header-height) + 2rem);
+}
+
+/*====  LOGO ============================ */
+.logo {
+  font: 700 1.31rem 'Poppins', sans-serif;
+  color: var(--title-color);
+}
+
+.logo span {
+  color: var(--base-color);
+}
+
+/*====  NAVIGATION ============================ */
+nav {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+nav ul li {
+  text-align: center;
+}
+
+nav ul li a {
+  transition: color 0.2s;
+  position: relative;
+}
+
+nav ul li a:hover {
+  color: var(--base-color);
+  font-weight: bold;
+}
+
+nav ul li a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: var(--base-color);
+
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+
+  transition: width 0.2s;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%;
+}
+
+nav .menu {
+  top: -20rem;
+  transition: 0.6s;
+}
+
+nav .menu ul {
+  display: none;
+}
+
+/* Mostrar menu */
+nav.show .menu {
+  background: var(--body-color);
+
+  height: 100vh;
+  width: 100vw;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: grid;
+  place-content: center;
+}
+
+nav.show .menu ul {
+  display: grid;
+}
+
+nav.show ul.grid {
+  gap: 4rem;
+}
+
+/*====  TOGGLE MENU============================ */
+
+nav .icon-close {
+  top: -2rem;
+  transition: top 0.3s;
+}
+
+nav .icon-menu {
+  right: 1.5rem;
+  transition: right 0.3s;
+}
+
+nav.show .icon-menu {
+  right: -1.5rem;
+}
+
+nav.show .icon-close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+}
+
+.toggle {
+  color: var(--base-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  right: 1.5rem;
+}
+
+/*====  /TOGGLE MENU============================ */
+
+/*====  HOME ============================ */
+#home {
+  overflow: hidden;
+}
+
+#home .image {
+  position: relative;
+}
+
+#home .image::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -16.8%;
+  left: 16.7%;
+  z-index: 0;
+}
+
+#home .image img {
+  position: relative;
+  right: 2.93rem;
+}
+
+#home .image img,
+#home .image::before {
+  border-radius: 0.25rem;
+}
+
+#home .text {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: center;
+}
+
+#home .text h1 {
+  margin-bottom: 1rem;
+}
+
+#home .text p {
+  margin-bottom: 2rem;
+}
+
+/*====  /HOME ============================ */
+
+/*==== ABOUT============================ */
+
+#about {
+  background: white;
+  overflow: hidden;
+}
+
+#about .image {
+  position: relative;
+}
+
+#about .image::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -10%;
+  right: 16%;
+  z-index: 0;
+}
+
+#about .image img {
+  position: relative;
+}
+
+#about .image::before {
+  border-radius: 0.25rem;
+}
+
+/*==== /ABOUT============================ */
+
+/*==== SERVICES============================ */
+#services i {
+  font-size: 5rem;
+  color: var(--base-color);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+strong {
+  color: var(--base-color);
+}
+
+#services #card {
+  padding: 3.6rem 2rem;
+  box-shadow: 0 0 12px rgb(0, 0, 0, 0.1);
+  border-bottom: 0.25rem solid var(--base-color);
+  border-radius: 0.25rem 0.25rem 0 0;
+  text-align: center;
+}
+
+#card p {
+  line-height: 1.625rem;
+}
+
+#card .title {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+.cards.grid {
+  gap: 1.5rem;
+}
+
+/*==== /SERVICES============================ */
+
+/*==== TESTIMONIAS============================ */
+
+#testimonials {
+  background: white;
+}
+
+#testimonials p {
+  color: var(--title-color);
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5rem;
+}
+
+#testimonials cite img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  clip-path: circle();
+  margin-right: 0.5rem;
+}
+
+#testimonials cite {
+  display: flex;
+  align-items: center;
+}
+.testimonial blockquote {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+.testimonial blockquote cite {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.testimonial blockquote p {
+  position: relative;
+  text-indent: 1.75rem;
+}
+
+.testimonial blockquote p span {
+  font: 700 3rem serif;
+  color: var(--base-color);
+  position: absolute;
+  top: -0.75rem;
+  left: -1.75rem;
+}
+
+.swiper-slide {
+  height: auto;
+  padding: 4rem 1rem;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--base-color);
+}
+
+#testimonials header {
+  margin-bottom: 0;
+  margin-left: 1.5;
+  margin-right: 1.5;
+}
+
+/*==== /TESTIMONIAS============================ */
+
+/*==== CONTATO============================ */
+
+#contact .grid {
+  gap: 0rem;
+}
+
+#contact .icon-whatsapp {
+  color: white;
+  font-size: 1.5rem;
+}
+
+#contact .title {
+  margin-bottom: 1rem;
+}
+
+#contact p {
+  line-height: 1.625rem;
+  margin-bottom: 2rem;
+}
+
+#contact ul li a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  color: var(--title-color);
+}
+
+#contact .button {
+  justify-content: center;
+  width: 14.75rem;
+  font-size: 1rem;
+}
+
+#contact i {
+  font-size: 1.5rem;
+  margin-right: 0.625rem;
+  color: var(--base-color);
+}
+
+#contact header {
+  margin-bottom: 4rem;
+}
+
+/*====/CONTATO============================ */
+
+/*====FOOTER============================ */
+footer {
+  background-color: var(--base-color);
+  padding: 5rem 0;
+}
+
+footer .logo {
+  display: inline-block;
+}
+
+footer p {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+footer .logo span {
+  color: white;
+}
+
+footer .links a {
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 2rem;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+footer .back-to-top {
+  visibility: hidden;
+  opacity: 0;
+  font-size: 2rem;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  color: var(--base-color);
+  transition: 2s;
+}
+
+footer .back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  color: var(--base-color);
+}
+
+footer .back-to-top.color {
+  color: white;
+}
+
+footer .links a:hover {
+  transform: scale(1.2);
+}
+
+/*====/FOOTER============================ */
+
+/*====RESPONSIVE============================ */
+
+@media (min-width: 992px) {
+  .title {
+    font-size: 2.25rem;
+  }
+  .subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section {
+    padding: 10rem 0;
+  }
+
+  .button {
+    height: 3.125rem;
+  }
+
+  #header {
+    max-width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #header .menu {
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+  }
+
+  #header nav .menu ul {
+    display: flex;
+    gap: 2rem;
+  }
+
+  #header nav .menu ul li .title {
+    font: 400 1rem 'DM Sans';
+  }
+
+  #header nav .icon-menu {
+    display: none;
+  }
+
+  #home .container {
+    width: fit-content;
+    grid-auto-flow: column;
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 24rem;
+    text-align: left;
+  }
+
+  #home .image {
+    order: 1;
+    width: 35rem;
+    height: 23.4rem;
+  }
+
+  #home .image::before {
+    left: 13%;
+  }
+
+  #about .container .image::before {
+    height: 90%;
+    left: -13%;
+    top: -13%;
+  }
+
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+
+  #services .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #contact .container {
+    grid-auto-flow: column;
+    align-items: center;
+    margin-left: 7.7rem;
+    gap: 16.75rem;
+  }
+
+  #contact header {
+    text-align: left;
+  }
+
+  footer .section {
+    padding: 3.75rem;
+  }
+
+  footer .logo {
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  footer .grid {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .back-to-top {
+    right: 5rem;
+    bottom: 5rem;
+  }
+}
+
+/*====/RESPONSIVE============================ */
